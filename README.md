@@ -12,7 +12,6 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 * **Gestión:** Acceso remoto vía Web/SSH.
 
 ### Topología Lógica (Máquinas Virtuales)
-### Topología Lógica (Máquinas Virtuales)
 
 | Rol                   | SO            | Función                                       |
 | :-------------------- | :------------ | :-------------------------------------------- |
