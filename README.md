@@ -1,6 +1,20 @@
 # Proyecto Integrado 2º ASIR
 
-[TOC]
+- [Proyecto Integrado 2º ASIR](#proyecto-integrado-2º-asir)
+  - [Documento de Análisis de Requisitos y Viabilidad](#documento-de-análisis-de-requisitos-y-viabilidad)
+    - [1. Introducción y Contexto del Proyecto](#1-introducción-y-contexto-del-proyecto)
+      - [1.1. Título y Resumen Ejecutivo:](#11-título-y-resumen-ejecutivo)
+      - [1.2. Justificación y Necesidad (El Problema):](#12-justificación-y-necesidad-el-problema)
+      - [1.3. Objetivos del Proyecto:](#13-objetivos-del-proyecto)
+    - [2. Análisis de Viabilidad y Requisitos](#2-análisis-de-viabilidad-y-requisitos)
+      - [2.1. Viabilidad Operativa, Técnica y Económica:](#21-viabilidad-operativa-técnica-y-económica)
+      - [2.2. Requisitos Funcionales y No Funcionales:](#22-requisitos-funcionales-y-no-funcionales)
+      - [2.3. Herramientas y Stack Tecnológico Propuesto:](#23-herramientas-y-stack-tecnológico-propuesto)
+    - [3. Planificación Inicial del Trabajo](#3-planificación-inicial-del-trabajo)
+      - [3.1. Estructura del Equipo:](#31-estructura-del-equipo)
+      - [3.2. Metodología de Trabajo:](#32-metodología-de-trabajo)
+      - [3.3. Hitos Clave de la Fase:](#33-hitos-clave-de-la-fase)
+    - [4. Anexos y Referencias](#4-anexos-y-referencias)
 
 ## Documento de Análisis de Requisitos y Viabilidad
 
