@@ -1,6 +1,6 @@
 <details>
 <summary>📋 <strong>Tabla de Contenidos (Haz clic para desplegar)</strong></summary>
-
+  
 - [Documento de Análisis de Requisitos y Viabilidad](#documento-de-análisis-de-requisitos-y-viabilidad)
   - [1. Introducción y Contexto del Proyecto](#1-introducción-y-contexto-del-proyecto)
     - [1.1. Título y Resumen Ejecutivo:](#11-título-y-resumen-ejecutivo)
@@ -20,9 +20,7 @@
 </details>
 
 
-
 ------
-
 
 
 ## Documento de Análisis de Requisitos y Viabilidad
