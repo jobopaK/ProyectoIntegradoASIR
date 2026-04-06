@@ -35,9 +35,9 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 ## 4. Hoja de Ruta (Roadmap)
 - [x] Definición de arquitectura.
 - [x] Estructura del repositorio y documentación inicial.
-- [ ] Instalación y configuración de Proxmox.
+- [x] Instalación y configuración de Proxmox.
 - [ ] Despliegue de VMs y configuración con Ansible.
-- [ ] Inicialización del Clúster Kubernetes.
+- [x] Inicialización del Clúster Kubernetes.
 - [ ] Implementación de MetalLB e Ingress.
 - [ ] Despliegue de servicios (Web).
 - [ ] Implementación futura de monitorización con Prometheus y Grafana.

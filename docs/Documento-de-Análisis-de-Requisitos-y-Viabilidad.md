@@ -165,9 +165,9 @@
 | **Análisis**       | Definición de la arquitectura del sistema.       | Completado |
 | **Análisis**       | Selección de Hardware y Stack de Software.       | Completado |
 | **Análisis**       | Creación del Repositorio y Estructura en GitHub. | Completado |
-| **Diseño**         | Instalación de Proxmox en hardware físico.       | Pendiente  |
+| **Diseño**         | Instalación de Proxmox en hardware físico.       | Completado |
 | **Diseño**         | Desarrollo de Playbooks de Ansible iniciales.    | Pendiente  |
-| **Implementación** | Despliegue del Cluster Kubernetes (Init & Join). | Pendiente  |
+| **Implementación** | Despliegue del Cluster Kubernetes (Init & Join). | Completado |
 
 
 
