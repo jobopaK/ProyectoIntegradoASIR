@@ -55,6 +55,7 @@ Para replicar esta infraestructura desde cero, se han elaborado manuales detalla
 - [x] Unión de nodos Worker (Join) y configuración de CNI (Flannel).
 - [ ] Implementación de MetalLB e Ingress.
 - [ ] Despliegue de servicios (Web).
+- [ ] Automatización: Ansible.
 - [ ] Implementación futura de monitorización con Prometheus y Grafana.
 
 ## 6. Notas de Implementación y Troubleshooting
