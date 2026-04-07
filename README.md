@@ -13,22 +13,21 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 
 ### Topología Lógica (Máquinas Virtuales)
 
-| Rol                   | SO            | Función                                       |
-| :-------------------- | :------------ | :-------------------------------------------- |
-| **K8s Control Plane** | Linux Server  | Gestión del clúster (API, Etcd, Scheduler).   |
-| **K8s Worker 1**      | Linux Server  | Ejecución de cargas de trabajo.               |
-| **K8s Worker 2**      | Linux Server  | Redundancia y HA.                             |
-| **Servidor Ansible**  | Linux Server  | Automatización y aprovisionamiento (IaC).     |
-| **Cliente**           | Linux Desktop | Pruebas de usuario final y validación de red. |
+| Rol                   | SO            | Función                                       | IP Estática (Sugerida) |
+| :-------------------- | :------------ | :-------------------------------------------- | :--------------------- |
+| **K8s Control Plane** | Ubuntu Server | Gestión del clúster (API, Etcd, Scheduler). | 192.168.1.110          |
+| **K8s Worker 1** | Ubuntu Server | Ejecución de cargas de trabajo.             | 192.168.1.111          |
+| **K8s Worker 2** | Ubuntu Server | Redundancia y HA.                           | 192.168.1.112          |
+| **Servidor Ansible** | Ubuntu Server | Automatización y aprovisionamiento (IaC).   | 192.168.1.115          |
+| **Cliente** | Linux Desktop | Pruebas de usuario final y validación de red.| DHCP                   |
 
 ## 3. Stack Tecnológico
 
-* **Orquestación:** Kubernetes (K8s).
+* **Orquestación:** Kubernetes (K8s) v1.30.
 * **Runtime:** containerd.
-* **Red y Balanceo:** 
-    * **MetalLB:** Load Balancer Bare-Metal (Capa 2).
-    * **Ingress Controller:** Nginx (Gestión de tráfico HTTP/S).
-
+* **Red (CNI):** Flannel.
+* **Red y Balanceo:** * **MetalLB:** Load Balancer Bare-Metal (Capa 2).
+* **Ingress Controller:** Nginx (Gestión de tráfico HTTP/S).
 * **Automatización:** Ansible.
 * **Versiones:** Git + GitHub.
 
@@ -36,8 +35,20 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 - [x] Definición de arquitectura.
 - [x] Estructura del repositorio y documentación inicial.
 - [x] Instalación y configuración de Proxmox.
-- [ ] Despliegue de VMs y configuración con Ansible.
-- [x] Inicialización del Clúster Kubernetes.
+- [x] Despliegue de VMs y configuración base (Networking, IP estática).
+- [x] Inicialización del Clúster Kubernetes (Control Plane).
+- [x] Unión de nodos Worker (Join) y configuración de CNI (Flannel).
 - [ ] Implementación de MetalLB e Ingress.
 - [ ] Despliegue de servicios (Web).
 - [ ] Implementación futura de monitorización con Prometheus y Grafana.
+
+## 5. Notas de Implementación y Troubleshooting
+Durante la fase de despliegue del clúster, se identificaron y resolvieron los siguientes retos técnicos críticos:
+
+* **Gestión de Red:** Se desactivó el protocolo IPv6 a nivel de kernel para evitar conflictos de identificación de nodos en el Control Plane.
+* **Configuración del Runtime:** Se ajustó el driver de Cgroup a `systemd` en `containerd` para garantizar la estabilidad del servicio `kubelet`.
+* **Persistencia de Red (CNI):** Resolución de errores `NetworkPluginNotReady` mediante la limpieza manual de interfaces de red residuales (`cni0`, `flannel.1`) y reinicio del almacenamiento de `containerd`.
+* **Identidad de Nodo:** Uso de la flag `--node-ip` en la configuración de `kubelet` para forzar la vinculación correcta con la interfaz de red IPv4 estática.
+
+---
+© 2026 - Proyecto Integrado de Grado Superior ASIR
