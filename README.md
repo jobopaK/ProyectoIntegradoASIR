@@ -21,7 +21,22 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 | **Servidor Ansible** | Ubuntu Server | Automatización y aprovisionamiento (IaC).   | 192.168.1.115          |
 | **Cliente** | Linux Desktop | Pruebas de usuario final y validación de red.| DHCP                   |
 
-## 3. Stack Tecnológico
+---
+
+## 3. 📚 Documentación y Guías de Despliegue
+
+Para replicar esta infraestructura desde cero, se han elaborado manuales detallados que cubren cada fase técnica del proyecto:
+
+* **Fase 1:** [🚀 Instalación de Proxmox VE](docs/Instalación-Proxmox.md) - Preparación del host físico y BIOS.
+* **Fase 2:** [🖥️ Configuración de Proxmox e Instalación de Ubuntu Server](docs/Configuración-Proxmox-e-instalación-UbuntuServer.md) - Repositorios, red y creación de plantillas (Templates).
+* **Fase 3:** [☸️ Inicialización del Clúster Kubernetes](docs/3.Inicialización-del-Cluster-Kubernetes.md) - Despliegue de nodos, CNI Flannel y Troubleshooting.
+
+> [!TIP]
+> Se recomienda seguir las guías en orden secuencial para garantizar la correcta visibilidad de red entre los nodos.
+
+---
+
+## 4. Stack Tecnológico
 
 * **Orquestación:** Kubernetes (K8s) v1.30.
 * **Runtime:** containerd.
@@ -31,7 +46,7 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 * **Automatización:** Ansible.
 * **Versiones:** Git + GitHub.
 
-## 4. Hoja de Ruta (Roadmap)
+## 5. Hoja de Ruta (Roadmap)
 - [x] Definición de arquitectura.
 - [x] Estructura del repositorio y documentación inicial.
 - [x] Instalación y configuración de Proxmox.
@@ -42,7 +57,7 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 - [ ] Despliegue de servicios (Web).
 - [ ] Implementación futura de monitorización con Prometheus y Grafana.
 
-## 5. Notas de Implementación y Troubleshooting
+## 6. Notas de Implementación y Troubleshooting
 Durante la fase de despliegue del clúster, se identificaron y resolvieron los siguientes retos técnicos críticos:
 
 * **Gestión de Red:** Se desactivó el protocolo IPv6 a nivel de kernel para evitar conflictos de identificación de nodos en el Control Plane.
