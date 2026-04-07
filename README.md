@@ -27,9 +27,9 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 
 Para replicar esta infraestructura desde cero, se han elaborado manuales detallados que cubren cada fase técnica del proyecto:
 
-* **Fase 1:** [🚀 Instalación de Proxmox VE](docs/Instalación-Proxmox.md) - Preparación del host físico y BIOS.
-* **Fase 2:** [🖥️ Configuración de Proxmox e Instalación de Ubuntu Server](docs/Configuración-Proxmox-e-instalación-UbuntuServer.md) - Repositorios, red y creación de plantillas (Templates).
-* **Fase 3:** [☸️ Inicialización del Clúster Kubernetes](docs/3.Inicialización-del-Cluster-Kubernetes.md) - Despliegue de nodos, CNI Flannel y Troubleshooting.
+* **Fase 1:** [🚀 Instalación de Proxmox VE](docs/01.Instalación-Proxmox.md) - Preparación del host físico y BIOS.
+* **Fase 2:** [🖥️ Configuración de Proxmox e Instalación de Ubuntu Server](docs/02.Configuración-Proxmox-e-instalación-UbuntuServer.md) - Repositorios, red y creación de plantillas (Templates).
+* **Fase 3:** [☸️ Inicialización del Clúster Kubernetes](docs/03.Inicialización-del-Cluster-Kubernetes.md) - Despliegue de nodos, CNI Flannel y Troubleshooting.
 
 > [!TIP]
 > Se recomienda seguir las guías en orden secuencial para garantizar la correcta visibilidad de red entre los nodos.
