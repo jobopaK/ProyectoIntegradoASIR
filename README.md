@@ -21,11 +21,11 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 ---
 
 ## 📑 Índice
-- [Arquitectura](#2-arquitectura)
-- [Documentación](#3-documentación-y-guías-de-despliegue)
-- [Stack Tecnológico](#4-stack-tecnológico)
-- [Roadmap](#5-hoja-de-ruta-roadmap)
-- [Troubleshooting](#6-notas-de-implementación-y-troubleshooting)
+- [Arquitectura](#-2-arquitectura)
+- [Documentación](#-3-documentación-y-guías-de-despliegue)
+- [Stack Tecnológico](#-4-stack-tecnológico)
+- [Roadmap](#-5-hoja-de-ruta-roadmap)
+- [Troubleshooting](#-6-notas-de-implementación-y-troubleshooting)
 
 ---
 
@@ -67,7 +67,8 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 * **Orquestación:** `Kubernetes v1.30` ☸️
 * **Runtime:** `containerd` 📦
 * **Red (CNI):** `Flannel` 🕸️
-* **Red y Balanceo:** * **MetalLB:** Load Balancer Bare-Metal (Capa 2).
+* **Red y Balanceo:**
+    * **MetalLB:** Load Balancer Bare-Metal (Capa 2).
     * **Ingress Controller:** Nginx (Gestión de tráfico HTTP/S).
 * **Automatización:** `Ansible` 🤖
 * **Control de Versiones:** `Git` + `GitHub` 🐙
