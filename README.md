@@ -95,8 +95,11 @@ Durante el despliegue se resolvieron retos técnicos críticos documentados para
 > **Gestión de Red:** Desactivación obligatoria de **IPv6** a nivel de kernel para evitar conflictos en el Control Plane.
 
 * **Configuración del Runtime:** Ajuste del driver de Cgroup a `systemd` en `containerd` para asegurar la estabilidad del proceso `kubelet`.
-* **Persistencia CNI:** Limpieza manual de interfaces residuales (`cni0`, `flannel.1`) ante errores de tipo `NetworkPluginNotReady`.
 * **Vinculación de IP:** Uso estricto de la flag `--node-ip` en la configuración de `kubelet` para forzar la interfaz IPv4 correcta sobre el hardware virtualizado.
+* **Conectividad Externa (Netplan):** Se detectó que los nodos perdían conectividad con internet al configurar IPs estáticas. Se corrigió definiendo explícitamente la ruta por defecto (`routes: to: default via 192.168.1.1`) en lugar del parámetro obsoleto `gateway4`.
+* **Identidad de Nodo (Kubelet):** Para evitar que el clúster usara interfaces erróneas, se forzó la vinculación de IP mediante la creación del archivo `/etc/default/kubelet` con el parámetro `KUBELET_EXTRA_ARGS="--node-ip=<IP_ESTATICA>"`.
+* **Módulos del Kernel (Networking):** El plugin de red Flannel entraba en `CrashLoopBackOff` por la ausencia del módulo `br_netfilter`. Se solucionó cargando el módulo manualmente y asegurando su persistencia en `/etc/modules-load.d/k8s.conf`.
+* **Persistencia de Red (CNI):** Resolución de errores `NetworkPluginNotReady` mediante la limpieza manual de interfaces residuales (`cni0`, `flannel.1`) y el reinicio de `containerd`.
 
 ---
 <p align="center">
