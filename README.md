@@ -8,7 +8,6 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
-
 ---
 
 ## 📖 1. Descripción del Proyecto
@@ -17,15 +16,6 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 
 > [!IMPORTANT]
 > Puedes consultar el detalle estratégico en el [Documento de Análisis de Requisitos y Viabilidad](docs/Documento-de-Análisis-de-Requisitos-y-Viabilidad.md).
-
----
-
-## 📑 Índice
-- [Arquitectura](#-2-arquitectura)
-- [Documentación](#-3-documentación-y-guías-de-despliegue)
-- [Stack Tecnológico](#-4-stack-tecnológico)
-- [Roadmap](#-5-hoja-de-ruta-roadmap)
-- [Troubleshooting](#-6-notas-de-implementación-y-troubleshooting)
 
 ---
 
