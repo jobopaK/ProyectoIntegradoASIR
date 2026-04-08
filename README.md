@@ -1,12 +1,13 @@
-# ☸️ Infraestructura de Alta Disponibilidad y Orquestación con Kubernetes sobre Proxmox
+# Infraestructura de Alta Disponibilidad y Orquestación con Kubernetes sobre Proxmox
 
 <p align="center">
   <img src="https://img.shields.io/badge/Kubernetes-v1.30-blue?logo=kubernetes&logoColor=white" alt="K8s Version">
-  <img src="https://img.shields.io/badge/Proxmox-VE%208.x-orange?logo=proxmox&logoColor=white" alt="Proxmox">
+  <img src="https://img.shields.io/badge/Proxmox-VE%209.x-orange?logo=proxmox&logoColor=white" alt="Proxmox">
   <img src="https://img.shields.io/badge/Ansible-Automated-red?logo=ansible&logoColor=white" alt="Ansible">
   <img src="https://img.shields.io/badge/Ubuntu-24.04%20LTS-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
+
 
 ---
 
