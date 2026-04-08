@@ -54,6 +54,8 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 * **Fase 1:** [🚀 Instalación de Proxmox VE](docs/01.Instalación-Proxmox.md) - Preparación del host físico y configuración de BIOS.
 * **Fase 2:** [🖥️ Configuración de Proxmox e Instalación de Ubuntu Server](docs/02.Configuración-Proxmox-e-instalación-UbuntuServer.md) - Gestión de repositorios, red y creación de plantillas (*Templates*).
 * **Fase 3:** [☸️ Inicialización del Clúster Kubernetes](docs/03.Inicialización-del-Cluster-Kubernetes.md) - Despliegue de nodos, CNI Flannel y resolución de errores.
+* **Fase 4:** [⚖️ Instalación y Configuración de MetalLB](docs/04.Instalar-y-configurar-MetalLB.md) - Implementación de balanceo de carga en Capa 2 y gestión de IPs externas.
+* **Fase 5:** [🌐 Instalación de Ingress Controller (Nginx)](docs/05.Instalar-Ingress-Controller-Nginx.md) - Gestión de tráfico HTTP/HTTPS mediante reglas de enrutamiento por dominio.
 
 > [!TIP]
 > Se recomienda seguir las guías en orden secuencial para garantizar la correcta visibilidad de red entre los componentes del clúster.
