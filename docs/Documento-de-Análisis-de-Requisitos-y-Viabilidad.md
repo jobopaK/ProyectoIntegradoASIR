@@ -67,11 +67,13 @@
   * El sistema debe garantizar la persistencia de datos de las aplicaciones independientemente del nodo físico en el que se ejecuten.
   * La automatización (Ansible) debe ser capaz de configurar un nuevo nodo desde cero.
 
-* **Requisitos No Funcionales:** * **Alta Disponibilidad:** El servicio web debe seguir respondiendo aunque uno de los nodos Worker se apague.
+* **Requisitos No Funcionales:** 
+  * **Alta Disponibilidad:** El servicio web debe seguir respondiendo aunque uno de los nodos Worker se apague.
   * **Escalabilidad:** Debe permitir añadir nuevos nodos al clúster sin detener el servicio.
   * **Consistencia de Red:** Exclusión de tráfico IPv6 para evitar latencias y errores de direccionamiento interno.
   * **Mantenibilidad:** Documentación de incidencias técnicas y soluciones aplicadas (Troubleshooting).
   * **Rendimiento:** Uso de `systemd` como driver de Cgroup para una mejor integración con el kernel de Ubuntu 24.04.
+  
 
 ### 2.3. Herramientas y Stack Tecnológico Propuesto
 

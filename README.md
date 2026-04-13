@@ -47,6 +47,7 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 * **Fase 3:** [☸️ Inicialización del Clúster Kubernetes](docs/03.Inicialización-del-Cluster-Kubernetes.md) - Despliegue de nodos, CNI Flannel y resolución de errores.
 * **Fase 4:** [⚖️ Instalación y Configuración de MetalLB](docs/04.Instalar-y-configurar-MetalLB.md) - Implementación de balanceo de carga en Capa 2 y gestión de IPs externas.
 * **Fase 5:** [🌐 Instalación de Ingress Controller (Nginx)](docs/05.Instalar-Ingress-Controller-Nginx.md) - Gestión de tráfico HTTP/HTTPS mediante reglas de enrutamiento por dominio.
+* **Fase 6:** [🌐 Implementación Servidor NFS y Almacenamiento Persistente](docs/06.Servidor-NFS-y-Almacenamiento-Persistente.md) - 
 
 > [!TIP]
 > Se recomienda seguir las guías en orden secuencial para garantizar la correcta visibilidad de red entre los componentes del clúster.
