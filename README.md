@@ -33,6 +33,7 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 | 👷 | **K8s Worker 1** | Ubuntu Server | Ejecución de cargas de trabajo | `192.168.1.111` |
 | 👷 | **K8s Worker 2** | Ubuntu Server | Redundancia y HA | `192.168.1.112` |
 | 🤖 | **Servidor Ansible** | Ubuntu Server | Automatización y aprovisionamiento (IaC) | `192.168.1.115` |
+| 💾 | **Servidor NFS** | Ubuntu Server | Almacenamiento persistente (PV/PVC) | `192.168.1.116` |
 | 💻 | **Cliente** | Linux Desktop | Pruebas de usuario final y validación de red | `DHCP` |
 
 ---
@@ -60,6 +61,7 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 * **Red y Balanceo:**
     * **MetalLB:** Load Balancer Bare-Metal (Capa 2).
     * **Ingress Controller:** Nginx (Gestión de tráfico HTTP/S).
+* **Almacenamiento:** `NFS` (Persistent Volumes) 💾
 * **Automatización:** `Ansible` 🤖
 * **Control de Versiones:** `Git` + `GitHub` 🐙
 
@@ -73,7 +75,8 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 - [x] 🖥️ Despliegue de VMs y configuración base (Networking, IP estática).
 - [x] 🛡️ Inicialización del Clúster Kubernetes (Control Plane).
 - [x] 👷 Unión de nodos Worker (Join) y configuración de CNI (Flannel).
-- [ ] ⚖️ Implementación de MetalLB e Ingress.
+- [x] ⚖️ Implementación de MetalLB e Ingress.
+- [ ] 💾 Implementación de servidor NFS y Volúmenes Persistentes.
 - [ ] 🚀 Despliegue de servicios (Web).
 - [ ] 🤖 Automatización avanzada con Ansible.
 - [ ] 📊 Monitorización con Prometheus y Grafana (Futuro).
@@ -93,6 +96,8 @@ Durante el despliegue se resolvieron retos técnicos críticos documentados para
 * **Identidad de Nodo (Kubelet):** Para evitar que el clúster usara interfaces erróneas, se forzó la vinculación de IP mediante la creación del archivo `/etc/default/kubelet` con el parámetro `KUBELET_EXTRA_ARGS="--node-ip=<IP_ESTATICA>"`.
 * **Módulos del Kernel (Networking):** El plugin de red Flannel entraba en `CrashLoopBackOff` por la ausencia del módulo `br_netfilter`. Se solucionó cargando el módulo manualmente y asegurando su persistencia en `/etc/modules-load.d/k8s.conf`.
 * **Persistencia de Red (CNI):** Resolución de errores `NetworkPluginNotReady` mediante la limpieza manual de interfaces residuales (`cni0`, `flannel.1`) y el reinicio de `containerd`.
+* **Balanceo de Carga (MetalLB):** Modificación del `ConfigMap` de `kube-proxy` para activar `strictARP: true`, requisito indispensable para el correcto enrutamiento en Capa 2.
+* **Liberación de IPs (MetalLB/Ingress):** Precaución al eliminar despliegues de prueba (`LoadBalancer`) para asegurar que MetalLB devuelva la IP externa (`192.168.1.200`) al pool, dejándola disponible para el controlador Ingress.
 
 ---
 <p align="center">
