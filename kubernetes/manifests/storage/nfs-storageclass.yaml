@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-client
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # Debe coincidir con el PROVISIONER_NAME de tu deployment
+parameters:
+  archiveOnDelete: "false" # Si borras el PVC, los datos en el NFS se borran. Si pones "true", se archivan.
