@@ -1,0 +1,20 @@
+---
+- name: Preparación de nodos del clúster
+  hosts: all
+  become: yes  # Ejecuta como sudo
+  tasks:
+    - name: Instalar cliente NFS en todos los nodos
+      apt:
+        name: nfs-common
+        state: present
+        update_cache: yes
+
+    - name: Cargar módulo br_netfilter para el tráfico del clúster
+      modprobe:
+        name: br_netfilter
+        state: present
+
+    - name: Asegurar que br_netfilter se cargue al reiniciar
+      copy:
+        content: "br_netfilter"
+        dest: /etc/modules-load.d/k8s.conf
