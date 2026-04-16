@@ -1,0 +1,90 @@
+---
+- name: Instalación completa de Kubernetes en Nodos
+  hosts: workers
+  become: yes
+  tasks:
+    - name: 1. Desactivar SWAP (Requisito K8s)
+      shell: |
+        swapoff -a
+        sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
+    - name: 2. Configurar módulos del Kernel para Red
+      copy:
+        dest: /etc/modules-load.d/k8s.conf
+        content: |
+          overlay
+          br_netfilter
+
+    - name: 3. Cargar módulos ahora mismo
+      shell: |
+        modprobe overlay
+        modprobe br_netfilter
+
+    - name: 4. Configurar parámetros sysctl para IP Forwarding
+      copy:
+        dest: /etc/sysctl.d/k8s.conf
+        content: |
+          net.bridge.bridge-nf-call-iptables  = 1
+          net.bridge.bridge-nf-call-ip6tables = 1
+          net.ipv4.ip_forward                 = 1
+
+    - name: 5. Aplicar cambios de sysctl
+      command: sysctl --system
+
+    - name: 6. Instalar dependencias base
+      apt:
+        name: [apt-transport-https, ca-certificates, curl, gpg]
+        state: present
+        update_cache: yes
+
+    - name: 7. Añadir repositorio y clave de Containerd (Docker)
+      shell: |
+        install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg --yes
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    - name: 8. Instalar Containerd
+      apt:
+        name: containerd.io
+        state: present
+        update_cache: yes
+
+    - name: 9. Configurar Containerd (SystemdCgroup)
+      shell: |
+        mkdir -p /etc/containerd
+        containerd config default | tee /etc/containerd/config.toml
+        sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+      notify: Reiniciar Containerd
+
+    - name: 10. Añadir repositorio de Kubernetes (v1.30)
+      shell: |
+        curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg --yes
+        echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | tee /etc/apt/sources.list.d/kubernetes.list
+
+    - name: 11. Instalar Kubelet, Kubeadm y Kubectl
+      apt:
+        name: [kubelet, kubeadm, kubectl]
+        state: present
+        update_cache: yes
+
+    - name: 12. Bloquear versiones para evitar actualizaciones automáticas
+      shell: apt-mark hold kubelet kubeadm kubectl
+      
+    - name: 13. Cambiar el nombre del host (Hostname)
+      hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: 14. Leer el comando join del archivo txt
+      set_fact:
+        join_command: "{{ lookup('file', '~/ansible/token_k8s.txt') }}"
+
+    - name: 15. Unirse al clúster (si no está ya unido)
+      shell: "{{ join_command }}"
+      args:
+        creates: /etc/kubernetes/kubelet.conf
+
+  handlers:
+    - name: Reiniciar Containerd
+      service:
+        name: containerd
+        state: restarted
