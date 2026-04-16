@@ -109,4 +109,4 @@ Durante el despliegue se resolvieron retos técnicos críticos documentados para
 <p align="center">
   <b>Proyecto Integrado de Grado Superior ASIR</b><br>
   © 2026 - <a href="https://github.com/jobopaK">jobopaK</a>
-</p>
+</p> 
