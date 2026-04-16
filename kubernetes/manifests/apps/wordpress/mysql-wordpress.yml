@@ -1,0 +1,62 @@
+# --- PARTE 1: EL SERVICIO (La "Dirección" interna) ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-mysql  # [PERSONALIZABLE] El nombre DNS interno de la DB.
+  namespace: wp-proyecto # [FIJO] Debe coincidir con tu Namespace.
+spec:
+  ports:
+    - port: 3306         # [ESTÁNDAR] Puerto por defecto de MySQL.
+  selector:
+    app: wordpress       # [VITAL] Debe coincidir con los labels del Deployment (abajo).
+    tier: mysql          # [VITAL] Ayuda al Service a encontrar los Pods correctos.
+  clusterIP: None        # [TÉCNICO] Crea un servicio "Headless" (sin IP fija), ideal para DBs únicas.
+---
+# --- PARTE 2: EL DESPLIEGUE (El "Cuerpo" de la DB) ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-mysql  # [PERSONALIZABLE] Nombre del despliegue en Kubernetes.
+  namespace: wp-proyecto
+spec:
+  selector:
+    matchLabels:         # [VITAL] Kubernetes usa esto para saber qué pods "gestionar".
+      app: wordpress
+      tier: mysql
+  strategy:
+    type: Recreate       # [RECOMENDADO] Mata el pod viejo antes de crear el nuevo. 
+                         # Evita que dos pods intenten escribir en el mismo NFS a la vez.
+  template:
+    metadata:
+      labels:            # [VITAL] Etiquetas físicas que se le pegan al Pod al nacer.
+        app: wordpress
+        tier: mysql
+    spec:
+      containers:
+        - image: mysql:8.0 # [PERSONALIZABLE] Puedes cambiar la versión (ej: mysql:5.7).
+          name: mysql      # [PERSONALIZABLE] Nombre del contenedor dentro del Pod.
+          env:             # --- SECCIÓN DE VARIABLES DE ENTORNO ---
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:   # [SEGURIDAD] No ponemos la clave aquí, la traemos del Secret.
+                secretKeyRef:
+                  name: mysql-pass      # Nombre del Secret que creamos antes.
+                  key: root_password    # La etiqueta dentro del Secret.
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: password
+            - name: MYSQL_USER
+              value: asir          # [PERSONALIZABLE] Nombre del usuario de la DB.
+            - name: MYSQL_DATABASE
+              value: wordpress          # [PERSONALIZABLE] Nombre de la base de datos.
+          ports:
+            - containerPort: 3306      # Puerto que abre el contenedor hacia el clúster.
+              name: mysql
+          volumeMounts:    # --- DONDE SE "ENCHUFA" EL DISCO DENTRO ---
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql # [FIJO] Es la ruta interna donde MySQL guarda todo.
+      volumes:             # --- DEFINICIÓN DEL DISCO ---
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc        # [FIJO] El nombre del PVC que creamos en el paso anterior.
