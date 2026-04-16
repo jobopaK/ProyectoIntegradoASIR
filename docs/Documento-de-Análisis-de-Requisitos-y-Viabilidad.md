@@ -113,8 +113,8 @@
 | **Implementación** | Join de Workers y Configuración de Flannel CNI. | ✅ Completado |
 | **Implementación** | Depuración de errores de Red y Container Runtime. | ✅ Completado |
 | **Implementación** | Despliegue de MetalLB e Ingress. | ✅ Completado |
-| **Implementación** | Despliegue de servidor NFS y Volúmenes Persistentes. | ⏳ Pendiente |
-| **Diseño** | Desarrollo de Playbooks de Ansible iniciales. | ⏳ Pendiente |
+| **Implementación** | Despliegue de servidor NFS y Volúmenes Persistentes. | ✅ Completado |
+| **Diseño** | Desarrollo de Playbooks de Ansible iniciales. | ✅ Completado |
 | **Pruebas** | Test de Alta Disponibilidad (HA). | ⏳ Pendiente |
 
 ---
