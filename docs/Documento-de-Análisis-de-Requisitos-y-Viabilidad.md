@@ -115,7 +115,7 @@
 | **Implementación** | Despliegue de MetalLB e Ingress. | ✅ Completado |
 | **Implementación** | Despliegue de servidor NFS y Volúmenes Persistentes. | ✅ Completado |
 | **Diseño** | Desarrollo de Playbooks de Ansible iniciales. | ✅ Completado |
-| **Pruebas** | Test de Alta Disponibilidad (HA). | ⏳ Pendiente |
+| **Pruebas** | Test de Alta Disponibilidad (HA). | ⏳✅ Completado |
 
 ---
 

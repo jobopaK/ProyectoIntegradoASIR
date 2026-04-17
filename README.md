@@ -83,7 +83,7 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 - [x] ⚖️ Implementación de MetalLB e Ingress Controller (Nginx).
 - [x] 💾 Configuración de Servidor NFS y Aprovisionamiento Dinámico.
 - [x] 🤖 Automatización completa con Ansible (IaC).
-- [ ] 🚀 Creación de Dockerfile y despliegue de App con persistencia.
+- [x] 🚀 Despliegue de App con persistencia.
 - [ ] 🛡️ Pruebas de Alta Disponibilidad (Fallo de Nodos).
 - [ ] 📊 Monitorización con Prometheus y Grafana (Opcional).
 
