@@ -50,7 +50,7 @@ spec:
               name: wordpress
           volumeMounts:
             - name: wordpress-persistent-storage
-              mountPath: /var/lib/wordpress/wp-content # [FIJO] Carpeta de fotos y temas de WP
+              mountPath: /var/www/html # [FIJO] Carpeta de fotos y temas de WP
       volumes:
         - name: wordpress-persistent-storage
           persistentVolumeClaim:
