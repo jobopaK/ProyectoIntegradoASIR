@@ -3,10 +3,8 @@ kind: Ingress
 metadata:
   name: wordpress-ingress
   namespace: wp-proyecto
-  annotations:
-    # Indicamos que use el controlador Nginx que ya tenemos instalado
-    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx  # <--- Esta es la forma moderna que sugiere el warning
   rules:
   - host: wordpress.asir.local  # [PERSONALIZABLE] La URL que pondrás en tu navegador
     http:
