@@ -55,7 +55,7 @@ El diseño del sistema se ha modelado visualmente mediante un diagrama estructur
 4. **Bloque de Cargas de Trabajo (Workloads):** Representa las aplicaciones productivas. El tráfico HTTP/HTTPS gestionado por el Ingress Controller es enrutado hacia dos aplicaciones principales de demostración técnica: una pila de aplicación de WordPress (`wordpress.yml`) y una aplicación web de prueba (`web-demo.yml`).  
 5. **Bloque de Almacenamiento y Operaciones (Storage & Ops):** Para evitar la pérdida de estado en la aplicación de WordPress, las cargas de trabajo (*Workloads*) persisten sus datos y dependen directamente del aprovisionador de almacenamiento NFS (`NFS storage provisioner`), que a su vez escribe físicamente la información en la máquina virtual dedicada al Servidor NFS (`NFS server storage vm`). Paralelamente, el bloque de operaciones incluye documentación técnica y *tokens* vitales (como `token_k8s.txt`) que permiten a los Workers unirse al clúster de forma segura.
 
-![Diagrama](./images/Diagrama_small.png)
+![Diagrama](./images/diagram_small.png)
 
 ---
 
