@@ -74,11 +74,6 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 
 ---
 
-## 🔧 6. Diagrama
-![Diagrama](./docs/images/diagram.png)
-
----
-
 ## 🗺️ 5. Hoja de Ruta (Roadmap)
 
 - [x] 📐 Definición de arquitectura y análisis de viabilidad.
@@ -96,7 +91,7 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 
 ---
 
-## 🔧 7. Notas de Implementación y Troubleshooting
+## 🔧 6. Notas de Implementación y Troubleshooting
 
 Durante el despliegue se resolvieron retos técnicos críticos documentados para futuras referencias:
 
