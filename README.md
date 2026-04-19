@@ -16,8 +16,8 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 
 > [!IMPORTANT]
 > Puedes consultar más detalles en el:
-> [Documento de Análisis de Requisitos y Viabilidad](docs/Documento-de-Análisis-de-Requisitos-y-Viabilidad.md).
-> [Diseño del proyecto](docs/Diseño-del-proyecto.md).
+> * [Documento de Análisis de Requisitos y Viabilidad](docs/Documento-de-Análisis-de-Requisitos-y-Viabilidad.md).
+> * [Diseño del proyecto](docs/Diseño-del-proyecto.md).
 
 ---
 
