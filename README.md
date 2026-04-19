@@ -15,7 +15,9 @@
 Este proyecto consiste en el diseño e implementación de una infraestructura virtualizada *on-premise* para el despliegue de servicios contenerizados. Se simula un entorno de producción real garantizando **Alta Disponibilidad (HA)**, escalabilidad y gestión centralizada mediante un clúster de Kubernetes robusto.
 
 > [!IMPORTANT]
-> Puedes consultar el detalle estratégico en el [Documento de Análisis de Requisitos y Viabilidad](docs/Documento-de-Análisis-de-Requisitos-y-Viabilidad.md).
+> Puedes consultar más detalles en el:
+> [Documento de Análisis de Requisitos y Viabilidad](docs/Documento-de-Análisis-de-Requisitos-y-Viabilidad.md).
+> [Diseño del proyecto](docs/Diseño-del-proyecto.md).
 
 ---
 
