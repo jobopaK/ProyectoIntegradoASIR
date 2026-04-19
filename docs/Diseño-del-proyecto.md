@@ -87,7 +87,7 @@ El diseño del sistema se ha modelado visualmente mediante un diagrama estructur
 5. **Bloque de Almacenamiento y Operaciones (Storage & Ops):** * **Aprovisionamiento:** Se utiliza el **NFS-Subdirectory-External-Provisioner**. Esto define una `StorageClass` que permite a Kubernetes crear dinámicamente subdirectorios en el servidor NFS para cada PVC solicitado, automatizando la gestión de volúmenes.
     * **Estrategia de Backup:** Para eliminar el punto único de fallo del NFS, se contempla el uso de **Proxmox Backup Server (PBS)** para respaldos a nivel de VM y **Velero** para la recuperación ante desastres de los recursos de Kubernetes y sus volúmenes persistentes.
 
-![Diagrama](./images/diagram_small.png)
+![Diagrama](./images/diagram.png)
 
 ---
 
