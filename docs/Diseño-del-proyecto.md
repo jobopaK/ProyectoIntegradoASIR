@@ -1,6 +1,26 @@
 # **Diseño del Proyecto: Infraestructura de Alta Disponibilidad y Orquestación de Contenedores con Kubernetes sobre Proxmox**
 
-## **1\. Objetivos**
+<p align="center">
+  <img src="https://img.shields.io/badge/Proyecto-ASIR-005571?style=for-the-badge" alt="ASIR">
+  <img src="https://img.shields.io/badge/Infraestructura-K8s%20&%20Proxmox-blue?style=for-the-badge" alt="Infraestructura">
+  <img src="https://img.shields.io/badge/Metodología-Kanban-orange?style=for-the-badge" alt="Kanban">
+</p>
+
+<details>
+<summary>📋 <strong>Tabla de Contenidos (Haz clic para desplegar)</strong></summary>
+<br>
+
+<ul>
+  <li><a href="#1-objetivos">🎯 1. Objetivos</a></li>
+  <li><a href="#2-arquitectura-del-sistema">🏗️ 2. Arquitectura del Sistema</a></li>
+  <li><a href="#3-diagrama-red--servidores">📊 3. Diagrama (Red / Servidores)</a></li>
+  <li><a href="#4-plan-de-trabajo">📋 4. Plan de Trabajo</a></li>
+</ul>
+</details>
+
+---
+
+## 🎯 **1\. Objetivos**
 
 El objetivo principal de este proyecto es diseñar, implementar y documentar una **infraestructura *on-premise* virtualizada y de alta disponibilidad**, capaz de orquestar servicios contenerizados mediante Kubernetes sobre un hipervisor Proxmox. Se busca resolver las problemáticas comunes de los sistemas monolíticos, como los tiempos de inactividad por fallos de hardware y los altos costes del escalado vertical, ofreciendo una solución moderna orientada a microservicios.
 
@@ -18,7 +38,7 @@ Como **objetivo deseable**, y condicionado al tiempo tras asegurar la estabilida
 
 ---
 
-## **2\. Arquitectura del Sistema**
+## 🏗️ **2\. Arquitectura del Sistema**
 
 La arquitectura del sistema está diseñada bajo un enfoque de **microservicios y alta disponibilidad**, dividiendo la infraestructura en capas bien definidas que interactúan entre sí. Esta separación garantiza la modularidad, facilita el mantenimiento y permite el escalado horizontal.
 
@@ -56,7 +76,7 @@ A nivel lógico y de software, la arquitectura de Kubernetes v1.30 hace uso de h
 
 ---
 
-## **3\. Diagrama (Red / Servidores)**
+## 📊 **3\. Diagrama (Red / Servidores)**
 
 El diseño del sistema se ha modelado visualmente mediante un diagrama estructurado en bloques lógicos:
 
@@ -69,7 +89,7 @@ El diseño del sistema se ha modelado visualmente mediante un diagrama estructur
 
 ---
 
-## **4\. Plan de Trabajo**
+## 📋 **4\. Plan de Trabajo**
 
 El desarrollo se estructura bajo metodología **Kanban** en *GitHub Projects*, dividiéndose en las siguientes fases:
 
@@ -79,3 +99,9 @@ El desarrollo se estructura bajo metodología **Kanban** en *GitHub Projects*, d
 * **Fase 6 (Persistencia de Datos):** Configuración del Servidor NFS y despliegue del *NFS-Subdirectory-External-Provisioner* para gestión dinámica de `StorageClasses`.
 * **Fase 7 y 8 (Automatización y Aplicación):** Desarrollo de Playbooks de Ansible con `Ansible Vault`. Despliegue de aplicaciones utilizando *Secrets* y *ConfigMaps* para una gestión segura de la configuración.
 * **Fase 9 y 10 (Validación y Monitorización):** Pruebas de estrés y Alta Disponibilidad de cargas de trabajo. Implementación del plan de backup (PBS/Velero) y, opcionalmente, el stack Prometheus + Grafana.
+
+---
+<p align="center">
+  <b>Proyecto Integrado de Grado Superior ASIR</b><br>
+  © 2026 - <a href="https://github.com/jobopaK">jobopaK</a>
+</p>
