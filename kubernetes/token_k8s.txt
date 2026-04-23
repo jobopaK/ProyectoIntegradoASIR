@@ -1,3 +1,2 @@
-kubeadm join 192.168.1.110:6443 --token bhuwk9.qru46vwj814xxbcm \
-	--discovery-token-ca-cert-hash sha256:117f2ee7a653ddf1877e86459d58ad780cddb336cc90f315d0cbb1dc9c6396af 
-
+kubeadm join 192.168.1.110:6443 --token czucz6.33aco2xs8ss5fhjd \
+	--discovery-token-ca-cert-hash sha256:e5cd26c4bd48349a6ceb7745e61779c30342614d93fffd3f4c89e404ff791875
