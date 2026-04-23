@@ -3,6 +3,11 @@
   hosts: workers
   become: yes
   tasks:
+    - name: 0. Instalar cliente NFS (Añadido para persistencia WP)
+      apt:
+        name: nfs-common
+        state: present
+        update_cache: yes
     - name: 1. Desactivar SWAP (Requisito K8s)
       shell: |
         swapoff -a
