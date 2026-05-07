@@ -52,8 +52,7 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 * **Fase 6:** [💾 Servidor NFS y Almacenamiento Persistente](docs/06.Servidor-NFS-y-Almacenamiento-Persistente.md) - Configuración de almacenamiento externo dinámico para persistencia de datos.
 * **Fase 7:** [🤖 Automatización con Ansible](docs/07.Automatización-con-Ansible.md) - Gestión de configuración como código (IaC) y escalado automático de nodos.
 * **Fase 8:** [🚀 Despliegue de Aplicación Real y Dockerfile](docs/08.Despliegue-de-Aplicación-Real-y-Dockerfile.md) - Creación de imágenes personalizadas y servicios con base de datos persistente.
-* **Fase 9:** [🛡️ Alta Disponibilidad y Pruebas de Carga](docs/09.Alta-Disponibilidad-y-Pruebas-de-Carga.md) - Simulación de fallos y validación de la resiliencia del entorno.
-* **Fase 10 (Opcional):** [📊 Monitorización con Prometheus y Grafana](docs/10.Monitorización-con-Prometheus-y-Grafana.md) - Visualización de métricas de rendimiento del clúster y contenedores.
+* **Fase 9 (Opcional):** [📊 Monitorización con Prometheus y Grafana](docs/10.Monitorización-con-Prometheus-y-Grafana.md) - Visualización de métricas de rendimiento del clúster y contenedores.
 
 > [!TIP]
 > Se recomienda seguir las guías en orden secuencial para garantizar la correcta visibilidad de red entre los componentes del clúster.
@@ -86,7 +85,7 @@ Se han elaborado manuales técnicos detallados para replicar la infraestructura 
 - [x] 💾 Configuración de Servidor NFS y Aprovisionamiento Dinámico.
 - [x] 🤖 Automatización completa con Ansible (IaC).
 - [x] 🚀 Despliegue de App con persistencia.
-- [ ] 🛡️ Pruebas de Alta Disponibilidad (Fallo de Nodos).
+- [x] 🛡️ Pruebas de Alta Disponibilidad (Fallo de Nodos).
 - [ ] 📊 Monitorización con Prometheus y Grafana (Opcional).
 
 ---
