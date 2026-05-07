@@ -2,8 +2,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: 3enRaya-pvc
-  namespace: 3enRaya
+  name: 3enraya-pvc
+  namespace: 3enraya
 spec:
   storageClassName: nfs-client
   accessModes:
