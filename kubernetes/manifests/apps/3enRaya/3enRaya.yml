@@ -17,6 +17,11 @@ metadata:
   namespace: 3enraya
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate    # <--- 0 espera en los Pods
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: apache-web
