@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: 3enRaya-ingress
+  namespace: 3enRaya
+spec:
+  ingressClassName: nginx  # <--- Esta es la forma moderna que sugiere el warning
+  rules:
+  - host: 3enraya.asir.local  # [PERSONALIZABLE] La URL que pondrás en tu navegador
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: apache-service # Debe coincidir con el nombre del servicio del Paso 5
+            port:
+              number: 80

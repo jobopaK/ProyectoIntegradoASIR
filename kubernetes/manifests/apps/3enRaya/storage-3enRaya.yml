@@ -1,0 +1,13 @@
+# --- ALMACENAMIENTO PARA 3 EN RAYA ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: 3enRaya-pvc
+  namespace: 3enRaya
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi

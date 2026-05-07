@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-service
+  namespace: 3enRaya
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: apache-web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-web
+  namespace: 3enRaya
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-web
+  template:
+    metadata:
+      labels:
+        app: apache-web
+    spec:
+      containers:
+        - name: apache-container
+          image: httpd:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-data
+              mountPath: /usr/local/apache2/htdocs/ # Ruta donde Apache busca el index.html
+      volumes:
+        - name: web-data
+          persistentVolumeClaim:
+            claimName: 3enRaya-pvc
