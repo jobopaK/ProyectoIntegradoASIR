@@ -1,3 +1,58 @@
+# Memoria Final: Proyecto Integrado ASIR
+
+**Infraestructura de Alta Disponibilidad y Orquestación de Contenedores con Kubernetes sobre Proxmox**
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Proyecto-ASIR-005571?style=for-the-badge" alt="ASIR">
+  <img src="https://img.shields.io/badge/Infraestructura-K8s%20&%20Proxmox-blue?style=for-the-badge" alt="Infraestructura">
+  <img src="https://img.shields.io/badge/Metodolog%C3%ADa-Kanban-orange?style=for-the-badge" alt="Kanban">
+</p>
+
+<details>
+<summary>📋 <strong>Índice de Contenidos (Haz clic para desplegar)</strong></summary>
+<br>
+
+* [1. Introducción](#1-introducción)
+  * [1.1. Contexto del Proyecto](#11-contexto-del-proyecto)
+  * [1.2. Justificación y Problemática](#12-justificación-y-problemática)
+  * [1.3. Objetivos del Proyecto](#13-objetivos-del-proyecto)
+  * [1.4. Alcance y Metodología](#14-alcance-y-metodología)
+* [2. Análisis de necesidades](#2-análisis-de-necesidades)
+  * [2.1. Identificación del Problema y Justificación](#21-identificación-del-problema-y-justificación)
+  * [2.2. Análisis de Viabilidad](#22-análisis-de-viabilidad)
+  * [2.3. Requisitos del Sistema](#23-requisitos-del-sistema)
+  * [2.4. Stack Tecnológico Propuesto](#24-stack-tecnológico-propuesto)
+* [3. Diseño del Sistema](#3-diseño-del-sistema)
+  * [3.1. Arquitectura de Niveles](#31-arquitectura-de-niveles)
+  * [3.2. Topología Lógica y Nodos](#32-topología-lógica-y-nodos)
+  * [3.3. Diseño de Red y Tráfico](#33-diseño-de-red-y-tráfico)
+  * [3.4. Estrategia de Almacenamiento Persistente](#34-estrategia-de-almacenamiento-persistente)
+  * [3.5. Automatización y Gestión (IaC)](#35-automatización-y-gestión-iac)
+* [4. Implementación](#4-implementación)
+  * [4.1. Fase 1: Virtualización y Preparación del Host (Proxmox)](#41-fase-1-virtualización-y-preparación-del-host-proxmox)
+  * [4.2. Fase 2: Configuración de Red y Nodos](#42-fase-2-configuración-de-red-y-nodos)
+  * [4.3. Fase 3: Preparación del Kernel y Runtime (containerd)](#43-fase-3-preparación-del-kernel-y-runtime-containerd)
+  * [4.4. Fase 4: Inicialización y Red de Pods](#44-fase-4-inicialización-y-red-de-pods)
+  * [4.5. Fase 5: Servicios de Red (MetalLB e Ingress)](#45-fase-5-servicios-de-red-metallb-e-ingress)
+  * [4.6. Fase 6: Almacenamiento Persistente NFS](#46-fase-6-almacenamiento-persistente-nfs)
+  * [4.7. Fase 7: Automatización con Ansible (IaC)](#47-fase-7-automatización-con-ansible-iac)
+  * [4.8. Fase 8: Despliegue de Aplicación Real (WordPress)](#48-fase-8-despliegue-de-aplicación-real-wordpress)
+* [5. Resultados y pruebas](#5-resultados-y-pruebas)
+  * [5.1. Despliegue de Servicios Productivos](#51-despliegue-de-servicios-productivos)
+  * [5.2. Prueba de Alta Disponibilidad (HA)](#52-prueba-de-alta-disponibilidad-ha)
+  * [5.3. Prueba de Escalado Dinámico (Horizontal Pod Autoscaling)](#53-prueba-de-escalado-dinámico-horizontal-pod-autoscaling)
+  * [5.4. Validación de Persistencia y Aprovisionamiento](#54-validación-de-persistencia-y-aprovisionamiento)
+* [6. Conclusiones](#6-conclusiones)
+  * [6.1. Cumplimiento de Objetivos](#61-cumplimiento-de-objetivos)
+  * [6.2. Valor Técnico de la Solución](#62-valor-técnico-de-la-solución)
+  * [6.3. Desafíos Superados y Aprendizajes](#63-desafíos-superados-y-aprendizajes)
+  * [6.4. Líneas de Trabajo Futuras](#64-líneas-de-trabajo-futuras)
+  * [6.5. Valoración Final](#65-valoración-final)
+
+</details>
+
+---
+
 # 1. Introducción
 
 ## 1.1. Contexto del Proyecto
@@ -99,6 +154,8 @@ Para asegurar la calidad del entorno profesional, se establecen los siguientes p
 ## 3.1. Arquitectura de Niveles
 La arquitectura de este proyecto se ha diseñado bajo un enfoque modular de microservicios y alta disponibilidad. El sistema se organiza en cuatro niveles lógicos que interactúan entre sí, garantizando que el fallo en una capa superior no comprometa la integridad de los datos en las capas inferiores.
 
+![Diagrama de Arquitectura del Sistema](./images/diagram.png)
+
 ### 3.1.1. Capa de Virtualización (Hipervisor)
 La base de la infraestructura es un servidor físico que ejecuta **Proxmox VE**. Se ha seleccionado esta plataforma frente a alternativas propietarias por su flexibilidad para gestionar máquinas virtuales (KVM) y su base sólida en Debian Linux. 
 
@@ -150,11 +207,15 @@ La fase de implementación se ejecutó de forma secuencial, partiendo desde el a
 ## 4.1. Fase 1: Virtualización y Preparación del Host (Proxmox)
 La implementación comenzó con la instalación de **Proxmox VE 9.x** en el servidor físico. Un paso crítico documentado fue el ajuste de la **BIOS**, habilitando el **SVM Mode** para permitir que el procesador Ryzen 7 gestionara las instrucciones de virtualización de forma nativa, reduciendo drásticamente la sobrecarga de software.
 
+![Instalación de Proxmox VE](./images/0_proxmox1.jpg)
+
 ### 4.1.1. Creación de la Plantilla Base (Gold Template)
 Para optimizar el despliegue, se creó una máquina virtual "maestra" con **Ubuntu Server 24.04 LTS**. Esta plantilla incluía:
 * **QEMU Guest Agent:** Para permitir la comunicación directa entre Proxmox y la VM.
 * **OpenSSH Server:** Para la gestión remota.
 * **Limpieza de residuos:** Eliminación de archivos temporales para minimizar el peso de los futuros clones.
+
+![Plantilla base de Ubuntu Server](./images/4_plantilla_ubuntu_server.png)
 
 ## 4.2. Fase 2: Configuración de Red y Nodos
 Una vez clonados los nodos (Master y Workers), se procedió a la configuración de red estática. Un reto técnico resuelto fue la transición en **Netplan** para Ubuntu 24.04, donde se descartó el parámetro `gateway4` en favor de rutas explícitas (`routes: to: default`), evitando así pérdidas de conectividad externa tras la asignación de la IP fija.
@@ -165,24 +226,40 @@ Antes de inicializar Kubernetes, se realizaron ajustes profundos en el sistema o
 2.  **Módulos del Kernel:** Carga manual de `overlay` y `br_netfilter` para permitir el puenteo de red entre pods.
 3.  **Containerd:** Se instaló como motor de ejecución, configurando explícitamente el parámetro `SystemdCgroup = true` en el archivo `config.toml`. Esto asegura que el proceso `kubelet` y el sistema operativo utilicen el mismo controlador de recursos, evitando inestabilidades bajo carga.
 
+![Ajustes de Kernel y Swap](./images/5_swap_kernel_reenvioIP.png)
+
 ## 4.4. Fase 4: Inicialización y Red de Pods
 La creación del clúster se realizó mediante `kubeadm init`. Se definió un CIDR específico para los pods (`10.244.0.0/16`) compatible con **Flannel**, el plugin CNI seleccionado por su ligereza.
 
 Para la unión de los nodos Workers, se aplicó una "Lección Aprendida" crítica: la vinculación manual de la IP interna mediante el archivo `/etc/default/kubelet` con la flag `--node-ip`. Este ajuste fue necesario para evitar que Kubernetes seleccionara interfaces de red erróneas durante el proceso de arranque.
+
+![Nodos del clúster en estado Ready](./images/7_Nodos.png)
 
 ## 4.5. Fase 5: Servicios de Red (MetalLB e Ingress)
 Con el clúster en estado `Ready`, se desplegó la infraestructura de acceso:
 * **MetalLB:** Se configuró en modo Capa 2, reservando el rango `192.168.1.200 - 192.168.1.250` de la red física. Se ajustó el `ConfigMap` de `kube-proxy` para activar `strictARP`, requisito indispensable para que MetalLB anuncie las IPs correctamente mediante ARP.
 * **Nginx Ingress Controller:** Se instaló para gestionar el tráfico de Capa 7, permitiendo que servicios como WordPress fueran accesibles mediante el dominio `wordpress.asir.local`.
 
+![Configuración de MetalLB e Ingress](./images/12_Ingress.png)
+
 ## 4.6. Fase 6: Almacenamiento Persistente NFS
 Se implementó un servidor NFS dedicado (IP `192.168.1.116`) con la directiva `no_root_squash`, permitiendo que Kubernetes gestionara permisos de archivos de forma remota. 
 La automatización se completó con el **NFS Subdir External Provisioner**, que crea dinámicamente carpetas en el servidor NFS para cada aplicación, garantizando que el almacenamiento sea elástico y desacoplado del ciclo de vida del contenedor.
+
+![Servidor NFS y Persistencia](./images/16_nfs.png)
 
 ## 4.7. Fase 7: Automatización con Ansible (IaC)
 La implementación culminó con la creación del entorno de **Ansible**. Se configuró el acceso SSH mediante llaves y se aplicó la directiva `NOPASSWD` en el archivo `sudoers` de la plantilla base.
 * **Playbook de Pre-requisitos:** Automatiza la carga de módulos y desactivación de swap.
 * **Super Playbook de Instalación:** Capaz de transformar una VM de Ubuntu limpia en un nodo de Kubernetes funcional en menos de 5 minutos, incluyendo la gestión dinámica de tokens de unión.
+* **Seguridad (Ansible Vault):** Se empleó `ansible-vault` para cifrar datos sensibles, como el token de unión al clúster (`token_k8s.txt`) y las credenciales de acceso, asegurando buenas prácticas de seguridad corporativa.
+
+![Automatización con Ansible](./images/18_ansible.png)
+
+## 4.8. Fase 8: Despliegue de Aplicación Real (WordPress)
+Con la infraestructura base operativa, se procedió a desplegar una aplicación de arquitectura Stateful. Se utilizó WordPress respaldado por una base de datos MySQL, conectando ambos servicios al servidor NFS para garantizar la persistencia de datos. Finalmente, se expuso la web al exterior mediante el Ingress Controller y se aplicaron Kubernetes Secrets para la gestión segura de contraseñas.
+
+![Despliegue de WordPress en el clúster](./images/26_wp.png)
 
 
 
@@ -199,6 +276,8 @@ Se han desplegado tres tipos de cargas de trabajo para testear diferentes protoc
 Se desplegó un sitio de WordPress utilizando un `Deployment` para la aplicación y otro para la base de datos MySQL. 
 * **Persistencia:** Ambos servicios utilizan `PersistentVolumeClaims` (PVC) vinculados a la `StorageClass` de NFS.
 * **Acceso:** Se expuso mediante un objeto Ingress apuntando al dominio `wordpress.asir.local` en la IP `192.168.1.200`.
+
+![Panel de WordPress operando en el clúster](./images/28_wp.png)
 
 ### 5.1.2. Juego Estático: "3 en Raya" (Alta Disponibilidad)
 Para probar la ligereza y el balanceo, se desplegó una web estática (HTML/CSS/JS).
@@ -217,6 +296,8 @@ Se puso a prueba la capacidad de crecimiento del sistema utilizando el nuevo nod
 
 * **Comando ejecutado:** `kubectl scale deployment apache-web --replicas=5 -n 3enRaya`.
 * **Resultado:** Kubernetes distribuyó los 5 pods entre los tres workers disponibles. Esta prueba confirmó que la automatización con Ansible fue exitosa, ya que el nuevo worker aceptó cargas de trabajo de inmediato sin intervención manual adicional.
+
+![Escalado de Pods con Ingress](./images/14_ingress_scale.png)
 
 ## 5.4. Validación de Persistencia y Aprovisionamiento
 Se verificó que el **NFS Subdir External Provisioner** gestiona correctamente el almacenamiento físico en el servidor NFS (`192.168.1.116`).
