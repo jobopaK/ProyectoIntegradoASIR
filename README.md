@@ -19,7 +19,7 @@ Este proyecto consiste en el diseño e implementación de una infraestructura vi
 > * [Documento de Análisis de Requisitos y Viabilidad](docs/Documento-de-Análisis-de-Requisitos-y-Viabilidad.md).
 > * [Diseño del proyecto](docs/Diseño-del-proyecto.md).
 > * [Memoria Final del Proyecto](docs/Memoria-Final.md).
-> * [Infografía](docs/pdfs/Infografía.pdf).
+> * [Infografía Concisa](docs/images/Infografía-Concisa.png) - [Infografía Estandar](docs/images/Infografía-Estandar.png) - [Infografía Detallada](docs/images/Infografía-Detallada.png) ([PDF](docs/pdfs/Infografía.pdf)).
 
 ---
 
