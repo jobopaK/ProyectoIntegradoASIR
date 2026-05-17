@@ -61,6 +61,12 @@
         containerd config default | tee /etc/containerd/config.toml
         sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
       notify: Reiniciar Containerd
+    
+    - name: 9b. Forzar reinicio inmediato de Containerd
+      service:
+        name: containerd
+        state: restarted
+        enabled: yes
 
     - name: 10. Añadir repositorio de Kubernetes (v1.30)
       shell: |
